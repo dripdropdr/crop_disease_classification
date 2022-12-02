@@ -31,12 +31,11 @@ class LSTM_Decoder(nn.Module):
         output = self.dropout((self.final_layer(fc_input)))
         return output
 
-
 # ViT encoder + lstm decoder
 class ViT2RNN(nn.Module):
     def __init__(self, max_len, embedding_dim, num_features, num_classes, rate):
         super(ViT2RNN, self).__init__()
-        self.vit = ViTBase16(num_classes=num_classes) # image model
+        self.vit = ViTBase16(n_classes=num_classes) # image model
         self.lstm = LSTM_Decoder(max_len, embedding_dim, num_features, num_classes, rate) # time series model
         
     def forward(self, img, seq):
@@ -44,4 +43,3 @@ class ViT2RNN(nn.Module):
         output = self.lstm(vit_output, seq)
         
         return output
-
