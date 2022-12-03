@@ -11,7 +11,7 @@ We ensemble Vision Transformer and LSTM by concatenating the final features that
 ### Training
 <br>
 <pre><code>python plant_main.py --epochs {epoch} --batch_size {batch_size} --workers {data_worker} --resdir {output_directory}</code></pre>
-<br>
+
 ### Testing
 <br>
 <pre><code>python predict.py --batch_size {batch_size} --workers {data_worker} --resdir {output_directory}</code></pre>
