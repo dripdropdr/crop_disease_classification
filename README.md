@@ -29,9 +29,14 @@ We use F1-score macro, because this dataset are class imbalanced. The detail of 
 <img src="https://user-images.githubusercontent.com/81093298/205441173-07f96acf-707e-4da4-bc37-2a13164c240e.png" width="350px" title="loss" alt="loss"></img>
 <br>
 We use Cross-Entropy Loss.
-<img src="https://user-images.githubusercontent.com/81093298/205442385-de2b71fe-44fc-4147-b552-442c7b20bb11.png" width="300px" title="f1-score" alt="f1-score"></img><br>
-<img src="https://user-images.githubusercontent.com/81093298/205442465-53c1389f-5f97-4fe3-b225-ccb4167d21ea.png" width="200px" title="f1-score" alt="f1-score"></img><img src="https://user-images.githubusercontent.com/81093298/205442467-e9025d90-57a7-4d5b-b5a0-d69564cfb5bd.png" width="200px" title="f1-score" alt="f1-score"></img><br>
-<img src="https://user-images.githubusercontent.com/81093298/205442471-5d1d25de-cf1f-4f7a-86de-89f96fc876ba.png" width="300px" title="f1-score" alt="f1-score"></img><br>
+<br>
+<img src="https://user-images.githubusercontent.com/81093298/205442385-de2b71fe-44fc-4147-b552-442c7b20bb11.png" width="400px" title="ceequation" alt="equation"></img>
+<br>
+<img src="https://user-images.githubusercontent.com/81093298/205442465-53c1389f-5f97-4fe3-b225-ccb4167d21ea.png" height="150px" title="softmax" alt="softmax"></img>
+<img src="https://user-images.githubusercontent.com/81093298/205442467-e9025d90-57a7-4d5b-b5a0-d69564cfb5bd.png" height="150px" title="label" alt="label"></img>
+<br>
+<img src="https://user-images.githubusercontent.com/81093298/205442471-5d1d25de-cf1f-4f7a-86de-89f96fc876ba.png" width="400px" title="ce" alt="f1-score"></img>
+<br>
 Cross-Entropy Loss usually used on Classification model. The class labels that are represented to one-hot vector is multiplied with the probability distribution that is output of the model
 <br>
 <br>
@@ -40,8 +45,13 @@ Cross-Entropy Loss usually used on Classification model. The class labels that a
 |---|---|---|---|
 |F1 score|0.9870|0.9655|0.7043|
 |Precision|0.9875|0.9680|0.8001|
-|Recall|0.9869|0.9650|0.7101|
-   
+|Recall|0.9869|0.9650|0.7101|   
 <br>
+
 # Data Description
 상우야 여깅
+
+# Reference
+https://velog.io/@cha-suyeon/%EC%86%90%EC%8B%A4%ED%95%A8%EC%88%98loss-function-Cross-Entropy-Loss
+
+
