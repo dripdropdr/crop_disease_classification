@@ -17,6 +17,7 @@ We ensemble Vision Transformer and LSTM by concatenating the final features that
 <pre><code>python predict.py --batch_size {batch_size} --workers {data_worker} --resdir {output_directory}</code></pre>
 <br>
 When training Vision Transformer, we use jx_vit_base_p16_224-80ecf9dd.pth pretrained model on ImaegNet-21K
+<br>
 To get pretrained model : https://www.kaggle.com/datasets/abhinand05/vit-base-models-pretrained-pytorch
 <br>
 
@@ -30,10 +31,11 @@ We use F1-score macro, because this dataset are class imbalanced. The detail of 
 <br>
 We use Cross-Entropy Loss.
 <br>
+<br>
 <img src="https://user-images.githubusercontent.com/81093298/205442385-de2b71fe-44fc-4147-b552-442c7b20bb11.png" width="400px" title="ceequation" alt="equation"></img>
 <br>
-<img src="https://user-images.githubusercontent.com/81093298/205442465-53c1389f-5f97-4fe3-b225-ccb4167d21ea.png" height="150px" title="softmax" alt="softmax"></img>
-<img src="https://user-images.githubusercontent.com/81093298/205442467-e9025d90-57a7-4d5b-b5a0-d69564cfb5bd.png" height="150px" title="label" alt="label"></img>
+<img src="https://user-images.githubusercontent.com/81093298/205442465-53c1389f-5f97-4fe3-b225-ccb4167d21ea.png" height="100px" title="softmax" alt="softmax"></img>
+<img src="https://user-images.githubusercontent.com/81093298/205442467-e9025d90-57a7-4d5b-b5a0-d69564cfb5bd.png" height="100px" title="label" alt="label"></img>
 <br>
 <img src="https://user-images.githubusercontent.com/81093298/205442471-5d1d25de-cf1f-4f7a-86de-89f96fc876ba.png" width="400px" title="ce" alt="f1-score"></img>
 <br>
