@@ -16,7 +16,7 @@ python plant_main.py --epochs {epoch} --batch_size {batch_size} --workers {data_
 python predict.py --batch_size {batch_size} --workers {data_worker} --resdir {output_directory}
 </code></pre>
 <br>>
-To get Pretrain model for Vision Transformer: ![jx_vit_base_p16_224-80ecf9dd.pth](https://www.kaggle.com/datasets/abhinand05/vit-base-models-pretrained-pytorch)
+To get Pretrain model for Vision Transformer: We use [jx_vit_base_p16_224-80ecf9dd.pth](https://www.kaggle.com/datasets/abhinand05/vit-base-models-pretrained-pytorch)
 <br>
 
 # Result
