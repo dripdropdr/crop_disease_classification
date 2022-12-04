@@ -89,6 +89,28 @@ NVIDIA RTX A4000 GPU, 32GB RAM, Ubuntu 18.04<br>
  '6_b4_1' : '시설포도_일소피해_초기'<br>
  '6_b4_3' : '시설포도_일소피해_말기'<br>
  '6_b5_1' : '시설포도_축과병_초기'<br>
+ 
+ ### Visualize images by class
+<img width="500px" alt="image" src="https://user-images.githubusercontent.com/59056821/205496378-71533d5e-4dca-4b19-8df6-b839ec845701.png">
+
+<img width="500px" alt="image" src="https://user-images.githubusercontent.com/59056821/205496399-3771d102-c38f-4e6d-8e6d-279c8215fec6.png">
+
+<img width="500px" alt="image" src="https://user-images.githubusercontent.com/59056821/205496523-ffbb5a1d-b683-4cde-8992-4476f2a34dbb.png">
+
+<img width="500px" alt="image" src="https://user-images.githubusercontent.com/59056821/205496855-8c5c2947-41d8-442c-91df-a4920c1bfd4d.png">
+
+<img width="500px" alt="image" src="https://user-images.githubusercontent.com/59056821/205496758-56ee93aa-539c-48e5-890d-730c045954b7.png">
+
+### Visualize environment variables by class
+<img width="500px" alt="image" src="https://user-images.githubusercontent.com/59056821/205496983-f6b6607d-4f76-407a-8c20-f84c28a0e080.png">
+
+<img width="500px" alt="image" src="https://user-images.githubusercontent.com/59056821/205496991-b08b4366-8c74-4912-aff9-74ca236412bb.png">
+
+<img width="500px" alt="image" src="https://user-images.githubusercontent.com/59056821/205497037-afed00ca-cdc4-4665-923a-9350369c015f.png">
+
+<img width="500px" alt="image" src="https://user-images.githubusercontent.com/59056821/205497053-9d3834c1-e949-41d2-9ea5-f1e600362f2e.png">
+
+
 
 # Reference
 https://velog.io/@cha-suyeon/%EC%86%90%EC%8B%A4%ED%95%A8%EC%88%98loss-function-Cross-Entropy-Loss
