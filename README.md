@@ -51,7 +51,44 @@ Cross-Entropy Loss usually used on Classification model. The class labels that a
 <br>
 
 # Data Description
-상우야 여깅
+
+Data : 57673<br>
+Train : Valid : Test = 7 : 1 : 2<br>
+Label : 20 classes<br>
+Epoch : 10, Batch size : 32<br>
+Loss function : Cross-entropy, Optimizer : Adam<br>
+NVIDIA RTX A4000 GPU, 32GB RAM, Ubuntu 18.04<br>
+
+### Distribution of classes
+<img width="600px" alt="image" src="https://user-images.githubusercontent.com/59056821/205493076-1bbec5f9-8236-4f35-bf5b-b481fbcfa244.png">
+
+
+### Label
+ '1_00_0' : '딸기_정상'<br>
+ '2_00_0' : '토마토_정상'<br>
+ '2_a5_2' : '토마토_흰가루병_중기'<br>
+ '3_00_0' : '파프리카_정상'<br>
+ '3_a9_1' : '파프리카_흰가루병_초기'<br>
+ '3_a9_2' : '파프리카_흰가루병_중기'<br>
+ '3_a9_3' : '파프리카_흰가루병_말기'<br>
+ '3_b3_1' : '파프리카_칼슘결핍_초기'<br>
+ '3_b6_1' : '파프리카_다량원소결핍(N)_초기'<br>
+ '3_b7_1' : '파프리카_다량원소결핍(P)_초기'<br>
+ '3_b8_1' : '파프리카_다량원소결핍(K)_초기'<br>
+ '4_00_0' : '오이_정상'<br>
+ '5_00_0' : '고추_정상'<br>
+ '5_a7_2' : '고추_탄저병_중기'<br>
+ '5_b6_1' : '고추_다량원소결핍(N)_초기'<br>
+ '5_b7_1' : '고추_다량원소결핍(P)_초기'<br>
+ '5_b8_1' : '고추_다량원소결핍(K)_초기'<br>
+ '6_00_0' : '시설포도_정상'<br>
+ '6_a11_1' : '시설포도_탄저병_초기'<br>
+ '6_a11_2' : '시설포도_탄저병_중기'<br>
+ '6_a12_1' : '시설포도_노균병_초기'<br>
+ '6_a12_2' : '시설포도_노균병_중기'<br>
+ '6_b4_1' : '시설포도_일소피해_초기'<br>
+ '6_b4_3' : '시설포도_일소피해_말기'<br>
+ '6_b5_1' : '시설포도_축과병_초기'<br>
 
 # Reference
 https://velog.io/@cha-suyeon/%EC%86%90%EC%8B%A4%ED%95%A8%EC%88%98loss-function-Cross-Entropy-Loss
