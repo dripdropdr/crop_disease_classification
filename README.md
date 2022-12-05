@@ -64,51 +64,40 @@ NVIDIA RTX A4000 GPU, 32GB RAM, Ubuntu 18.04<br>
 
 
 ### Label
- '1_00_0' : '딸기_정상'<br>
- '2_00_0' : '토마토_정상'<br>
- '2_a5_2' : '토마토_흰가루병_중기'<br>
- '3_00_0' : '파프리카_정상'<br>
- '3_a9_1' : '파프리카_흰가루병_초기'<br>
- '3_a9_2' : '파프리카_흰가루병_중기'<br>
- '3_a9_3' : '파프리카_흰가루병_말기'<br>
- '3_b3_1' : '파프리카_칼슘결핍_초기'<br>
- '3_b6_1' : '파프리카_다량원소결핍(N)_초기'<br>
- '3_b7_1' : '파프리카_다량원소결핍(P)_초기'<br>
- '3_b8_1' : '파프리카_다량원소결핍(K)_초기'<br>
- '4_00_0' : '오이_정상'<br>
- '5_00_0' : '고추_정상'<br>
- '5_a7_2' : '고추_탄저병_중기'<br>
- '5_b6_1' : '고추_다량원소결핍(N)_초기'<br>
- '5_b7_1' : '고추_다량원소결핍(P)_초기'<br>
- '5_b8_1' : '고추_다량원소결핍(K)_초기'<br>
- '6_00_0' : '시설포도_정상'<br>
- '6_a11_1' : '시설포도_탄저병_초기'<br>
- '6_a11_2' : '시설포도_탄저병_중기'<br>
- '6_a12_1' : '시설포도_노균병_초기'<br>
- '6_a12_2' : '시설포도_노균병_중기'<br>
- '6_b4_1' : '시설포도_일소피해_초기'<br>
- '6_b4_3' : '시설포도_일소피해_말기'<br>
- '6_b5_1' : '시설포도_축과병_초기'<br>
+ '1_00' : '딸기_정상'<br>
+ '2_00' : '토마토_정상'<br>
+ '2_a5' : '토마토_흰가루병'<br>
+ '3_00' : '파프리카_정상'<br>
+ '3_a9' : '파프리카_흰가루병'<br>
+ '3_b3' : '파프리카_칼슘결핍'<br>
+ '3_b6' : '파프리카_다량원소결핍(N)'<br>
+ '3_b7' : '파프리카_다량원소결핍(P)'<br>
+ '3_b8' : '파프리카_다량원소결핍(K)'<br>
+ '4_00' : '오이_정상'<br>
+ '5_00' : '고추_정상'<br>
+ '5_a7' : '고추_탄저병'<br>
+ '5_b6' : '고추_다량원소결핍(N)'<br>
+ '5_b7' : '고추_다량원소결핍(P)'<br>
+ '5_b8' : '고추_다량원소결핍(K)'<br>
+ '6_00' : '시설포도_정상'<br>
+ '6_a11' : '시설포도_탄저병'<br>
+ '6_a12' : '시설포도_노균병'<br>
+ '6_b4' : '시설포도_일소피해'<br>
+ '6_b5' : '시설포도_축과병'<br>
  
- ### Visualize images by class
-<img width="500px" alt="image" src="https://user-images.githubusercontent.com/59056821/205496378-71533d5e-4dca-4b19-8df6-b839ec845701.png">
-
-<img width="500px" alt="image" src="https://user-images.githubusercontent.com/59056821/205496399-3771d102-c38f-4e6d-8e6d-279c8215fec6.png">
-
-<img width="500px" alt="image" src="https://user-images.githubusercontent.com/59056821/205496523-ffbb5a1d-b683-4cde-8992-4476f2a34dbb.png">
-
-<img width="500px" alt="image" src="https://user-images.githubusercontent.com/59056821/205496855-8c5c2947-41d8-442c-91df-a4920c1bfd4d.png">
-
-<img width="500px" alt="image" src="https://user-images.githubusercontent.com/59056821/205496758-56ee93aa-539c-48e5-890d-730c045954b7.png">
+### Visualize images by class
+ 
+<img width="300px" height="200px" alt="image" src="https://user-images.githubusercontent.com/59056821/205496378-71533d5e-4dca-4b19-8df6-b839ec845701.png"></img>
+<img width="300px" height="200px" alt="image" src="https://user-images.githubusercontent.com/59056821/205496399-3771d102-c38f-4e6d-8e6d-279c8215fec6.png"></img>
+<img width="300px" height="200px" alt="image" src="https://user-images.githubusercontent.com/59056821/205496523-ffbb5a1d-b683-4cde-8992-4476f2a34dbb.png"></img>
+<img width="300px" height="200px" alt="image" src="https://user-images.githubusercontent.com/59056821/205496855-8c5c2947-41d8-442c-91df-a4920c1bfd4d.png"></img>
+<img width="300px" height="200px" alt="image" src="https://user-images.githubusercontent.com/59056821/205496758-56ee93aa-539c-48e5-890d-730c045954b7.png"></img>
 
 ### Visualize environment variables by class
-<img width="500px" alt="image" src="https://user-images.githubusercontent.com/59056821/205496983-f6b6607d-4f76-407a-8c20-f84c28a0e080.png">
-
-<img width="500px" alt="image" src="https://user-images.githubusercontent.com/59056821/205496991-b08b4366-8c74-4912-aff9-74ca236412bb.png">
-
-<img width="500px" alt="image" src="https://user-images.githubusercontent.com/59056821/205497037-afed00ca-cdc4-4665-923a-9350369c015f.png">
-
-<img width="500px" alt="image" src="https://user-images.githubusercontent.com/59056821/205497053-9d3834c1-e949-41d2-9ea5-f1e600362f2e.png">
+<img width="300px" height="200px" alt="image" src="https://user-images.githubusercontent.com/59056821/205496983-f6b6607d-4f76-407a-8c20-f84c28a0e080.png"></img>
+<img width="300px" height="200px" alt="image" src="https://user-images.githubusercontent.com/59056821/205496991-b08b4366-8c74-4912-aff9-74ca236412bb.png"></img>
+<img width="300px" height="200px" alt="image" src="https://user-images.githubusercontent.com/59056821/205497037-afed00ca-cdc4-4665-923a-9350369c015f.png"></img>
+<img width="300px" height="200px" alt="image" src="https://user-images.githubusercontent.com/59056821/205497053-9d3834c1-e949-41d2-9ea5-f1e600362f2e.png"></img>
 
 
 
