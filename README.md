@@ -1,6 +1,10 @@
 # Business Analytics
-This git repository is for 2022 term project of business analaytics. 
+This git repository is for 2022 term project of business analytics. 
 Our task is the classification for plant and disease
+
+Our theme is a project to enable farmers to diagnose pests to efficiently manage crops on smart farms.
+We make models using image data of plants and time series data of plants.
+
 <br>
 
 # Method
