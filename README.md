@@ -10,7 +10,8 @@ We make models using image data of plants and time series data of plants.
 # Method
 <img src="https://user-images.githubusercontent.com/81093298/205440581-0a9d9f71-c076-4d0e-bd88-5ddf5541d62d.png" width="500px" title="model" alt="model"></img><br>
 We ensemble Vision Transformer and LSTM by concatenating the final features that go through the Head, to handel multi -Image and Time Series- data both.
-   
+ 
+  
 # Run model
 ### Training
 <br>
@@ -21,6 +22,7 @@ We ensemble Vision Transformer and LSTM by concatenating the final features that
 <pre><code>python predict.py --batch_size {batch_size} --workers {data_worker} --resdir {output_directory}</code></pre>
 <br>
 When training Vision Transformer, we use jx_vit_base_p16_224-80ecf9dd.pth pretrained model on ImaegNet-21K
+We cannot find the pretrained model that trained with the crop & disease data which similar with our tasks, so we used this to get general features
 <br>
 To get pretrained model : https://www.kaggle.com/datasets/abhinand05/vit-base-models-pretrained-pytorch
 <br>
@@ -29,6 +31,7 @@ To get pretrained model : https://www.kaggle.com/datasets/abhinand05/vit-base-mo
 ### Train Result
 <img src="https://user-images.githubusercontent.com/81093298/205441160-428f75ef-01da-4799-a90f-3411f46e0051.png" width="350px" title="f1-score" alt="f1-score"></img><br>
 We use F1-score macro, because this dataset are class imbalanced. The detail of our class distribution is in the EDA of our repository.
+
 <br>
 <br>
 <img src="https://user-images.githubusercontent.com/81093298/205441173-07f96acf-707e-4da4-bc37-2a13164c240e.png" width="350px" title="loss" alt="loss"></img>
@@ -46,7 +49,7 @@ We use Cross-Entropy Loss.
 Cross-Entropy Loss usually used on Classification model. The class labels that are represented to one-hot vector is multiplied with the probability distribution that is output of the model
 <br>
 <br>
-### Evaluation & Ablation Study
+### Test result & Ablation Study
 |Metric|ViT+LSTM|ViT only|LSTM only|
 |---|---|---|---|
 |F1 score|0.9870|0.9655|0.7043|
@@ -105,10 +108,5 @@ NVIDIA RTX A4000 GPU, 32GB RAM, Ubuntu 18.04<br>
 <img width="300px" height="200px" alt="image" src="https://user-images.githubusercontent.com/59056821/205496991-b08b4366-8c74-4912-aff9-74ca236412bb.png"></img>
 <img width="300px" height="200px" alt="image" src="https://user-images.githubusercontent.com/59056821/205497037-afed00ca-cdc4-4665-923a-9350369c015f.png"></img>
 <img width="300px" height="200px" alt="image" src="https://user-images.githubusercontent.com/59056821/205497053-9d3834c1-e949-41d2-9ea5-f1e600362f2e.png"></img>
-
-
-
-# Reference
-https://velog.io/@cha-suyeon/%EC%86%90%EC%8B%A4%ED%95%A8%EC%88%98loss-function-Cross-Entropy-Loss
 
 
