@@ -8,9 +8,39 @@ We make models using image data of plants and time series data of plants.
 <br>
 
 # Method
-<img src="https://user-images.githubusercontent.com/81093298/205440581-0a9d9f71-c076-4d0e-bd88-5ddf5541d62d.png" width="500px" title="model" alt="model"></img><br>
+### Model
+<img src="https://user-images.githubusercontent.com/81093298/205440581-0a9d9f71-c076-4d0e-bd88-5ddf5541d62d.png" width="500px" title="model" alt="model"></img>
+<br>
 We ensemble Vision Transformer and LSTM by concatenating the final features that go through the Head, to handel multi -Image and Time Series- data both.
- 
+<br>
+<br>
+
+### Data-Preprocessing
+We split the source data and label.csv to train and test in data_preprocessing.ipynb
+
+Next, to select the features that we use in our analysis, we aggregate the all values of our time-series data and calculate min, max of them.   
+The detail of it is in: https://github.com/dripdropdr/business_analytics/blob/main/plant_main.py#L32
+<br>
+<pre><code>def csv_features():
+    # 분석에 사용할 feature 선택
+    csv_features = ['내부 온도 1 평균', '내부 온도 1 최고', '내부 온도 1 최저', '내부 이슬점 평균', '내부 이슬점 최고', '내부 이슬점 최저']
+    csv_files = sorted(glob('./data/*/*.csv'))
+    temp_csv = pd.read_csv(csv_files[0])[csv_features]
+    max_arr, min_arr = temp_csv.max().to_numpy(), temp_csv.min().to_numpy()
+
+    # feature 별 최대값, 최솟값 계산
+    for csv_path in tqdm(csv_files[1:], desc='feature minmax calculating'):
+        
+        ...
+    
+    return {csv_features[i]:[min_arr[i], max_arr[i]] for i in range(len(csv_features))}</code></pre>
+<br>
+
+### Training Implementations
+Epoch : 10, Batch size : 32<br>
+Loss function : Cross-entropy, Optimizer : Adam<br>
+NVIDIA RTX A4000 GPU, 32GB RAM, Ubuntu 18.04<br>
+
   
 # Run model
 ### Training
@@ -28,22 +58,28 @@ To get pretrained model : https://www.kaggle.com/datasets/abhinand05/vit-base-mo
 <br>
 
 # Result
+
 ### Train Result
 <img src="https://user-images.githubusercontent.com/81093298/205441160-428f75ef-01da-4799-a90f-3411f46e0051.png" width="350px" title="f1-score" alt="f1-score"></img><br>
-We use F1-score macro, because this dataset are class imbalanced. The detail of our class distribution is in the EDA of our repository.
+We use validation set to confirm the training status of our model in each epoch. The learning curve shows the fitting of our model.   
+Also, we employed F1-score macro for metric because this dataset are class imbalanced.   
+The detail of our dataset: https://github.com/dripdropdr/business_analytics/blob/main/EDA.ipynb
+<br>
+<br>
+<img src="https://user-images.githubusercontent.com/81093298/205857783-22cb5794-cc4e-4780-9a3c-c776c839017a.png" width="350px" title="loss" alt="loss"></img>
+<br>
+This is the formulation of f1-score. In Imbalanced dataset, accuracy isn't reflected the performance of the model.    
+F1-score is the harmonic mean of precision and recall to represent the performance more correctly.
+
 
 <br>
 <br>
 <img src="https://user-images.githubusercontent.com/81093298/205441173-07f96acf-707e-4da4-bc37-2a13164c240e.png" width="350px" title="loss" alt="loss"></img>
-<br>
 We use Cross-Entropy Loss.
 <br>
-<br>
 <img src="https://user-images.githubusercontent.com/81093298/205442385-de2b71fe-44fc-4147-b552-442c7b20bb11.png" width="400px" title="ceequation" alt="equation"></img>
-<br>
 <img src="https://user-images.githubusercontent.com/81093298/205442465-53c1389f-5f97-4fe3-b225-ccb4167d21ea.png" height="100px" title="softmax" alt="softmax"></img>
 <img src="https://user-images.githubusercontent.com/81093298/205442467-e9025d90-57a7-4d5b-b5a0-d69564cfb5bd.png" height="100px" title="label" alt="label"></img>
-<br>
 <img src="https://user-images.githubusercontent.com/81093298/205442471-5d1d25de-cf1f-4f7a-86de-89f96fc876ba.png" width="400px" title="ce" alt="f1-score"></img>
 <br>
 Cross-Entropy Loss usually used on Classification model. The class labels that are represented to one-hot vector is multiplied with the probability distribution that is output of the model
@@ -60,18 +96,15 @@ Cross-Entropy Loss usually used on Classification model. The class labels that a
  
 <br>
 
-The results shows the fusion model that use time series data and image data both performed best result. 
-F1 score of LSTM only is relatively lower than ViT only. We assume the reason is that time series data, including environment information of the crops, didn't represent the features of the crop and disease directly than the image data. 
-Environment information may include about disease information of each crops, but cannot represent the information of the crop itself. 
+The results shows the fusion model that use time series data and image data both performed best result.   
+F1 score of LSTM only is relatively lower than ViT only. We assume the reason is that time series data, including environment information of the crops, didn't represent the features of the crop and disease directly than the image data.    
+Environment information may include about disease information of each crops, but cannot represent the information of the crop itself.    
 
 # Data Description
 
 Data : 57673<br>
 Train : Valid : Test = 7 : 1 : 2<br>
 Label : 20 classes<br>
-Epoch : 10, Batch size : 32<br>
-Loss function : Cross-entropy, Optimizer : Adam<br>
-NVIDIA RTX A4000 GPU, 32GB RAM, Ubuntu 18.04<br>
 
 ### Distribution of classes
 <img width="600px" alt="image" src="https://user-images.githubusercontent.com/59056821/205493076-1bbec5f9-8236-4f35-bf5b-b481fbcfa244.png">
