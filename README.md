@@ -49,13 +49,17 @@ We use Cross-Entropy Loss.
 Cross-Entropy Loss usually used on Classification model. The class labels that are represented to one-hot vector is multiplied with the probability distribution that is output of the model
 <br>
 <br>
+
 ### Test result & Ablation Study
+
 |Metric|ViT+LSTM|ViT only|LSTM only|
 |---|---|---|---|
 |F1 score|0.9870|0.9655|0.7043|
 |Precision|0.9875|0.9680|0.8001|
-|Recall|0.9869|0.9650|0.7101|   
+|Recall|0.9869|0.9650|0.7101|  
+ 
 <br>
+
 The results shows the fusion model that use time series data and image data both performed best result. 
 F1 score of LSTM only is relatively lower than ViT only. We assume the reason is that time series data, including environment information of the crops, didn't represent the features of the crop and disease directly than the image data. 
 Environment information may include about disease information of each crops, but cannot represent the information of the crop itself. 
