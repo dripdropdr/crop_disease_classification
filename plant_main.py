@@ -10,16 +10,14 @@ from glob import glob
 import torch
 from torch import nn
 from torchvision import models
-from torch.utils.data import Dataset
 from sklearn.metrics import f1_score
 from sklearn.model_selection import train_test_split
-# from linformer import Linformer
-
 from dataset import *
 from models import *
 
-os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
+
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -29,10 +27,11 @@ def parse_args():
     parser.add_argument('--resdir', type=str, default = './res', help='Path of saving result directory')
     return parser.parse_args()
 
+
 def csv_features():
     # 분석에 사용할 feature 선택
     csv_features = ['내부 온도 1 평균', '내부 온도 1 최고', '내부 온도 1 최저', '내부 이슬점 평균', '내부 이슬점 최고', '내부 이슬점 최저']
-    csv_files = sorted(glob('./data/*/*.csv'))
+    csv_files = sorted(glob('./dataset/*/*/*.csv'))
     temp_csv = pd.read_csv(csv_files[0])[csv_features]
     max_arr, min_arr = temp_csv.max().to_numpy(), temp_csv.min().to_numpy()
 
@@ -53,7 +52,17 @@ def csv_features():
     return {csv_features[i]:[min_arr[i], max_arr[i]] for i in range(len(csv_features))}
 
 
+def accuracy_function(real, pred):    
+    real = real.cpu()
+    pred = torch.argmax(pred, dim=1).cpu()
+    score = f1_score(real, pred, average='macro')
+    return score
+
+
 def visualize(train_plot, val_plot, name, resdir):
+    print(type(train_plot))
+    train_plot = torch.stack(train_plot)
+    val_plot = torch.stack(val_plot).cpu()
     plt.figure(figsize=(10,7))
     plt.grid()
     plt.plot(train_plot, label='train_%s' %(name))
@@ -62,7 +71,8 @@ def visualize(train_plot, val_plot, name, resdir):
     plt.ylabel(name)
     plt.title(name, fontsize=25)
     plt.legend()
-    plt.savefig(resdir+'%s.png'%(name), dpi=300)
+    plt.savefig(resdir+'/%s.png'%(name), dpi=300)
+
 
 def run():
     args = parse_args()
@@ -70,7 +80,7 @@ def run():
     # feature 별 최대값, 최솟값 dictionary 생성
     csv_feature_dict = csv_features()
 
-    if not os.path.exist(args.resdir):
+    if not os.path.exists(args.resdir):
         os.mkdir(args.resdir)
     
     # class
@@ -109,18 +119,18 @@ def run():
     train = sorted(glob('./dataset/train/*'))
 
     labels = pd.read_csv('./train.csv')['label']
-    label_revised = labels.str.slice(start=0, stop=4)
-    labels = pd.read_csv('./train.csv')
-    label_list = labels.set_index('image', drop=True)["label"]
+    _labels = pd.read_csv('./train.csv')
+    label_list = _labels.set_index('image', drop=True)["label"]
     # 7:1:2
-    train, val = train_test_split(train, test_size=0.125, stratify=label_revised)
+    train, val = train_test_split(train, test_size=0.125, stratify=labels)
 
-    train_dataset = CustomDataset(train,label_list, csv_feature_dict, label_encoder)
-    val_dataset = CustomDataset(val,label_list, csv_feature_dict, label_encoder)
+    train_dataset = CustomDataset(train, label_list, csv_feature_dict, label_encoder)
+    val_dataset = CustomDataset(val, label_list, csv_feature_dict, label_encoder)
+    # test_dataset = CustomDataset(test, mode = 'test')
 
     train_dataloader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, num_workers=args.workers, shuffle=True)
     val_dataloader = torch.utils.data.DataLoader(val_dataset, batch_size=batch_size, num_workers=args.workers, shuffle=False)
-    
+    # test_dataloader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, num_workers=16, shuffle=False)
     
 
     model = ViT2RNN(max_len=max_len, embedding_dim=embedding_dim, num_features=num_features, num_classes=num_classes, rate=dropout_rate)
@@ -133,7 +143,7 @@ def run():
     loss_plot, val_loss_plot = [], []
     metric_plot, val_metric_plot = [], []
 
-    if not os.path.exist(args.resdir+'/weight'):
+    if not os.path.exists(args.resdir+'/weight'):
         os.mkdir(args.resdir+'/weight')
 
     # Train Start
@@ -143,24 +153,20 @@ def run():
 
         # Train
         tqdm_train_dataset = tqdm(enumerate(train_dataloader), desc='Training ... ')
-        for batch, batch_item in tqdm_dataset:
+        for batch, batch_item in tqdm_train_dataset:
             img = batch_item['img'].to(device)
             csv_feature = batch_item['csv_feature'].to(device)
             label = batch_item['label'].to(device)
-            if training is True:
-                model.train()
-                optimizer.zero_grad()
-                with torch.cuda.amp.autocast():
-                    output = model(img, csv_feature)
-                    loss = criterion(output, label)
-                loss.backward()
-                optimizer.step()
-                score = accuracy_function(label, output)
-                batch_loss =  loss
-                batch_acc = score
-
-            else:
-                
+            model.train()
+            optimizer.zero_grad()
+            with torch.cuda.amp.autocast():
+                output = model(img, csv_feature)
+                loss = criterion(output, label)
+            loss.backward()
+            optimizer.step()
+            score = accuracy_function(label, output)
+            batch_loss =  loss
+            batch_acc = score
 
             total_loss += batch_loss
             total_acc += batch_acc
@@ -177,7 +183,7 @@ def run():
         # Valid
         tqdm_val_dataset = tqdm(enumerate(val_dataloader), desc='Validation ... ')
         training = False
-        for batch, batch_item in tqdm_dataset:
+        for batch, batch_item in tqdm_val_dataset:
             model.eval()
             with torch.no_grad():
                 output = model(img, csv_feature)
@@ -201,8 +207,8 @@ def run():
         if np.max(val_metric_plot) == val_metric_plot[-1]:
             torch.save(model.state_dict(), args.resdir+'/weight/best_weight.pt')
 
-        visualize(metric_plot, val_metric_plot, 'f1_score', resdir)
-        visualize(loss_plot, val_loss_plot, 'loss', resdir)
+        visualize(metric_plot, val_metric_plot, 'f1_score', args.resdir)
+        visualize(loss_plot, val_loss_plot, 'loss', args.resdir)
 
 if __name__ == "__main__":                    
     run()
